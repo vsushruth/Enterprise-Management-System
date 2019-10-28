@@ -6,13 +6,6 @@
 ?>
 
 <?php include "head.php"; ?>
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-</style>
-</head>
-<body>
 
 <br><br>
 <h1><center>All Showrooms</center></h1>
@@ -107,7 +100,7 @@ $conn->close();
 
             if(mysqli_query($con, $q))
             {
-                echo "Showroom Added Successfully!!";
+                // echo "Showroom Added Successfully!!";
                 header('location:showrooms.php');
             }
             else

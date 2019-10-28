@@ -9,7 +9,21 @@
 <!-- <a href="logout.php">LOGOUT</a> -->
 
 <br><br>
-<center><h1> Welcome <?php echo $_SESSION['Eid'] ?></h1></center>
+<center><h1> Welcome 
+	<?php 
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$dbname = "supermarket";
+	$Eid = $_SESSION['Eid'];
+	$mysqli = new mysqli($servername, $username, $password, $dbname);
+                $sqlSelect="SELECT Employee_Name FROM employee where Employee_ID = $Eid";
+                $result = $mysqli-> query ($sqlSelect);
+                echo mysqli_fetch_array($result)[0];
+
+
+	?>
+	</h1></center>
 <br>
 <img src = "superExterior.jpg" style = " display: block; margin-left: auto; margin-right: auto; width: 50%;" >
 

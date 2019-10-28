@@ -1,51 +1,34 @@
-<?php
+<?php include "head.php";
 	session_start();
-
 	if(!isset($_SESSION['Eid']))
 		header('location:login.php');
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$dbname = "supermarket";
 
-	
+	echo "<br><br><h1><center>All Godowns</center></h1>";
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	if ($conn->connect_error) {
+	    die("Connection failed: " . $conn->connect_error);
+	}
+
+	$sql = "SELECT * FROM godown join employee on godown.Manager_ID = employee.Employee_ID order by Godown_ID";
+	// echo $sql;
+	$result = $conn->query($sql);
+
+	if ($result->num_rows > 0) {
+	    echo "<table class = 'table table-hover table-striped'><tr><th>Godown ID</th><th>Godown Location</th><th>Manager Name</th></tr>";
+
+	    while($row = $result->fetch_assoc()) {
+	        echo "<tr><td>" . $row["Godown_ID"]. "<a href='godown.php?Gid=".$row["Godown_ID"]."'><img src='1.png' style='width:30px; height30px; margin-left:20%;'></a></td><td>" . $row["Godown_Location"]. "</td><td>" . $row["Employee_Name"]. "</td></tr>";
+	    }
+	    echo "</table>";
+	} else {
+	    echo "0 results";
+	}
+	$conn->close();
 ?>
-
-<?php include "head.php"; ?>
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-</style>
-</head>
-<body>
-
-<br><br><h1><center>All Godowns</center></h1>
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "supermarket";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$sql = "SELECT * FROM godown join employee on godown.Manager_ID = employee.Employee_ID order by Godown_ID";
-// echo $sql;
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    echo "<table class = 'table table-hover table-striped'><tr><th>Godown ID</th><th>Godown Location</th><th>Manager Name</th></tr>";
-
-    while($row = $result->fetch_assoc()) {
-        echo "<tr><td>" . $row["Godown_ID"]. "<a href='godown.php?Gid=".$row["Godown_ID"]."'><img src='1.png' style='width:30px; height30px; margin-left:20%;'></a></td><td>" . $row["Godown_Location"]. "</td><td>" . $row["Employee_Name"]. "</td></tr>";
-    }
-    echo "</table>";
-} else {
-    echo "0 results";
-}
-$conn->close();
-?>
-
-
 <div class = "container-fluid row padding" >
     <div class="col-lg-4 col-md-6 col-sm-6" >
         <h1 style = "padding-left: 15%"><br>Add<br> Godowns : </h1>
@@ -77,8 +60,6 @@ $conn->close();
 		</form>
 	</div>
 </div>
-
-
 <?php
 	if(isset($_POST['button1']) && $_SESSION['Eid'] == 1)
 	{
@@ -118,8 +99,6 @@ $conn->close();
 		echo "You are not permitted to add Godown!!";
 	}
 ?>
-
-
 <br>
 <center><h3><a href='home.php' style = "color : white; font-weight : bold; padding-left : 50px; text-decoration: underline">Back</a></h3></center>
 <br><br><br>

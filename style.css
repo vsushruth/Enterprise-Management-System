@@ -99,7 +99,7 @@ html, body{
 /* Style the tab content */
 .tabcontent {
   display: none;
-  padding: 70px 30px;
+  padding: 100px 30px;
   border: 1px solid #ccc;
   border-top: none;
   background-color: #030329;

@@ -45,8 +45,7 @@
 
 				<div class="col-lg-6 col-md-6 col-sm-6" >
 					<img class = "image-index" src = "super1.jpg">
-					<p><br>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br>
-					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+					<p><br>This is a Supermarket Database management System. This can be used to track items bought from Suppliers, stored in Godowns, restocked to showrooms, available in showrooms, and Sold to customers. Prices of items can also be monitered and changed.</p>
 				</div>
 				
 				<div class="col-lg-6 col-md-6 col-sm-6">
