@@ -1,13 +1,13 @@
 <?php
 	session_start();
 
-	/*if(!isset($_SESSION['Eid']))
+	if(!isset($_SESSION['Eid']))
 		header('location:login.php');
 
 	$servername = "localhost";
 	$username = "root";
 	$password = "";
-	$dbname = "supermarket";*/
+	$dbname = "supermarket";
 ?>
 
 <?php include "head.php"; ?>

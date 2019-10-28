@@ -1,8 +1,8 @@
 <?php
     session_start();
 
-    //if(!isset($_SESSION['Eid']))
-      //  header('location:login.php');
+    if(!isset($_SESSION['Eid']))
+       header('location:login.php');
 ?>
 
 <?php include "head.php"; ?>
