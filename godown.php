@@ -52,14 +52,14 @@ if ($result->num_rows > 0) {
 echo "<h1>Purchase history</h1>";
 
 
-$sql = "SELECT * FROM purchase natural join purchase_item_details natural join godown natural join item natural join supplier where Godown_ID = $Gid";
+$sql = "SELECT * FROM purchase natural join purchase_item_details natural join godown natural join item natural join supplier where Godown_ID = $Gid order by DOP";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<table><tr><th>Item ID</th><th>Item Name</th><th>Supplier ID</th><th>Supplier Name</th><th>Quantity</th><th>Price per unit</th><th>Total price</th></tr>";
+    echo "<table><tr><th>Date</th><th>Item ID</th><th>Item Name</th><th>Supplier ID</th><th>Supplier Name</th><th>Quantity</th><th>Price per unit</th><th>Total price</th></tr>";
 
     while($row = $result->fetch_assoc()) {
-        echo "<tr><td>" . $row["Item_ID"]. "</td><td>" . $row["Item_Name"]. "</td><td>" . $row["Supplier_ID"]. "</td><td>" . $row["Supplier_Name"]. "</td><td>" . $row["Quantity"] . "</td><td>Rs." . $row["Item_Unit_Price"] . " per " . $row["Item_Units"] ."</td><td>" . $row["Item_Unit_Price"] * $row["Quantity"]. "</td></tr>";
+        echo "<tr><td>" . $row["DOP"]. "</td><td>" . $row["Item_ID"]. "</td><td>" . $row["Item_Name"]. "</td><td>" . $row["Supplier_ID"]. "</td><td>" . $row["Supplier_Name"]. "</td><td>" . $row["Quantity"] . "</td><td>Rs." . $row["Item_Unit_Price"] . " per " . $row["Item_Units"] ."</td><td>" . $row["Item_Unit_Price"] * $row["Quantity"]. "</td></tr>";
     }
     echo "</table>";
 } else {
@@ -71,14 +71,14 @@ if ($result->num_rows > 0) {
 echo "<h1>Restock history</h1>";
 
 
-$sql = "SELECT * FROM restock natural join restock_item_details natural join godown natural join item natural join showroom where Godown_ID = $Gid";
+$sql = "SELECT * FROM restock natural join restock_item_details natural join item natural join showroom where Godown_ID = $Gid order by DOR";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<table><tr><th>Item ID</th><th>Item Name</th><th>Showroom ID</th><th>Showroom Name</th><th>Quantity</th><th>Price per unit</th><th>Total price</th></tr>";
+    echo "<table><tr><th>Date</th><th>Item ID</th><th>Item Name</th><th>Showroom ID</th><th>Showroom Name</th><th>Quantity</th><th>Price per unit</th><th>Total price</th></tr>";
 
     while($row = $result->fetch_assoc()) {
-        echo "<tr><td>" . $row["Item_ID"]. "</td><td>" . $row["Item_Name"]. "</td><td>" . $row["Showroom_ID"]. "</td><td>" . $row["Showroom_Name"]. "</td><td>" . $row["Quantity"] . "</td><td>Rs." . $row["Item_Unit_Price"] . " per " . $row["Item_Units"] ."</td><td>" . $row["Item_Unit_Price"] * $row["Quantity"]. "</td></tr>";
+        echo "<tr><td>" . $row["DOR"]. "</td><td>" . $row["Item_ID"]. "</td><td>" . $row["Item_Name"]. "</td><td>" . $row["Showroom_ID"]. "</td><td>" . $row["Showroom_Name"]. "</td><td>" . $row["Quantity"] . "</td><td>Rs." . $row["Item_Unit_Price"] . " per " . $row["Item_Units"] ."</td><td>" . $row["Item_Unit_Price"] * $row["Quantity"]. "</td></tr>";
     }
     echo "</table>";
 } else {

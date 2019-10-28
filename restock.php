@@ -46,9 +46,9 @@ table, th, td {
 		$sqlSelect="SELECT * FROM godown";
 		$result = $mysqli-> query ($sqlSelect);
 		while ($row = mysqli_fetch_array($result)) {
-	    	$rows[] = $row;
+	    	$rows1[] = $row;
 		}
-		foreach ($rows as $row) {
+		foreach ($rows1 as $row) {
 		    print "<option value='" . $row['Godown_ID'] . "'>" .$row['Godown_ID']."(". $row['Godown_Location'] . ")</option>";
 		}
 	?>
@@ -72,7 +72,7 @@ table, th, td {
 		return $n > 0;
 	}
 
-	function isShowroomManager($sid, $mid)
+	function isShowroomManager($mid, $sid)
 	{
 		$q = "select * from showroom where Showroom_ID = $sid and Manager_ID = $mid";
 
@@ -155,7 +155,7 @@ table, th, td {
 			$result = mysqli_query($con, $q);
 			$Rid = mysqli_fetch_row($result)[0];
 			echo "<br><br<b>Restock exists!! Restock id is : $Rid</b><br><br>";
-			echo "<a href='editrestock.php?Rid=".$Rid."&Gid=".$Gid."&Sid=".$Sid."''>Edit this restock</a><br><br>";
+			echo "<a href='editrestock.php?Rid=".$Rid."&Gid=".$Gid."&dor=".$date."&Sid=".$Sid."''>Edit this restock</a><br><br>";
 		}
 		else
 		{

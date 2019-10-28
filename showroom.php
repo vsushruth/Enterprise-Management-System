@@ -71,7 +71,8 @@ if ($result->num_rows > 0) {
 echo "<h1>Restock history</h1>";
 
 
-$sql = "SELECT * FROM restock natural join restock_item_details natural join godown natural join item natural join showroom where Showroom_ID = $Sid";
+$sql = "SELECT * FROM restock natural join restock_item_details natural join item where Showroom_ID = $Sid";
+// echo $sql;
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

@@ -11,7 +11,6 @@
 ?>
 
 <?php include "head.php"; ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,46 +23,45 @@ table, th, td {
 <body>
 <a href='home.php'>Back</a>
 
-<h1>Add Purchase</h1>
+<h1>Add Sale</h1>
 <form method="post">
-	<label>Supplier ID</label>
-	<select name="Sid">
+	<label>Customer ID</label>
+	<select name="Cid">
 	<?php
 		$mysqli = new mysqli($servername, $username, $password, $dbname);
-		$sqlSelect="SELECT * FROM supplier";
+		$sqlSelect="SELECT * FROM customer";
 		$result = $mysqli-> query ($sqlSelect);
 		while ($row = mysqli_fetch_array($result)) {
 	    	$rows[] = $row;
 		}
 		foreach ($rows as $row) {
-		    print "<option value='" . $row['Supplier_ID'] . "'>" .$row['Supplier_ID']."(". $row['Supplier_Name'] . ")</option>";
+		    print "<option value='" . $row['Customer_ID'] . "'>" .$row['Customer_ID']."(". $row['Customer_Name'] . ")</option>";
 		}
 	?>
 	</select>
-	<label>Godown ID</label>
-	<select name="Gid">
+	<label>Showroom ID</label>
+	<select name="Sid">
 	<?php
 		$mysqli = new mysqli($servername, $username, $password, $dbname);
-		$sqlSelect="SELECT * FROM godown";
+		$sqlSelect="SELECT * FROM showroom";
 		$result = $mysqli-> query ($sqlSelect);
 		while ($row = mysqli_fetch_array($result)) {
 	    	$rows1[] = $row;
 		}
 		foreach ($rows1 as $row) {
-		    print "<option value='" . $row['Godown_ID'] . "'>" .$row['Godown_ID']."(". $row['Godown_Location'] . ")</option>";
-		    // echo $row['Godown_Location'];
+		    print "<option value='" . $row['Showroom_ID'] . "'>" .$row['Showroom_ID']."(". $row['Showroom_Location'] . ")</option>";
 		}
 	?>
 	</select>
-	<label>Date of Purchase</label>
+	<label>Date of Sale</label>
 	<input type="Date" name="date">
 	<button type="submit" name="button1">Add</button>
 </form>
 
 <?php
-	function isManager($mid, $gid)
+	function isShowroomManager($mid, $sid)
 	{
-		$q = "select * from godown where Godown_ID = $gid and Manager_ID = $mid";
+		$q = "select * from showroom where Showroom_ID = $sid and Manager_ID = $mid";
 
 		$con = mysqli_connect("127.0.0.1","root","");
 		mysqli_select_db($con, "supermarket");
@@ -73,31 +71,29 @@ table, th, td {
 		$n = mysqli_num_rows($result);
 		return $n > 0;
 	}
-
 	
 	if(isset($_POST['button1']))
 	{
-		$Gid = $_POST['Gid'];
 		$Sid = $_POST['Sid'];
+		$Cid = $_POST['Cid'];
 		$input_date = $_POST['date'];
 		$date=date("Y-m-d",strtotime($input_date));
-		if(isManager($_SESSION['Eid'], $Gid))
+		if(isShowroomManager($_SESSION['Eid'], $Sid))
 		{
-			$q = "select * from purchase where Godown_ID = '$Gid' and Supplier_ID = '$Sid' and DOP = '$date'";
-
 			$con = mysqli_connect("127.0.0.1","root","");
 			mysqli_select_db($con, "supermarket");
-			
-			$result = mysqli_query($con, $q);
 
+			$q = "select * from sale where Showroom_ID = '$Sid' and Customer_ID = '$Cid' and DOS = '$date'";			
+			$result = mysqli_query($con, $q);
 			$n = mysqli_num_rows($result);
+			// echo $n."<br><br>";
 
 			if($n != 0)
 			{
 
-				$q = "select Purchase_ID from purchase where Godown_ID = '$Gid' and Supplier_ID = '$Sid' and DOP = '$date' limit 1";
+				$q = "select Sale_ID from sale where Showroom_ID = '$Sid' and Customer_ID = '$Cid' and DOS = '$date' limit 1";
 				$result = mysqli_query($con, $q);
-				$Pid = mysqli_fetch_row($result)[0];
+				$Saleid = mysqli_fetch_row($result)[0];
 
 				$servername = "localhost";
 				$username = "root";
@@ -108,7 +104,7 @@ table, th, td {
 				if ($conn->connect_error) {
 				    die("Connection failed: " . $conn->connect_error);
 				}
-				$sql = "SELECT * FROM purchase_item_details natural join item where Purchase_ID = $Pid";
+				$sql = "SELECT * FROM sale_item_details natural join item where Sale_ID = $Saleid";
 
 				$result = $conn->query($sql);
 
@@ -123,30 +119,31 @@ table, th, td {
 				    echo "0 results";
 				}
 
+
 			}
 			else
 			{
-				$q = "INSERT INTO `purchase`(`Godown_ID`, `Supplier_ID`, `DOP`) VALUES ($Gid, $Sid, '$date')";
+				$q = "INSERT INTO `sale`(`Showroom_ID`, `Customer_ID`, `DOS`) VALUES ($Sid, $Cid, '$date')";
 				// echo $q;
 
 				if(mysqli_query($con, $q))
 				{
-					echo "Purchase Added Successfully!!";
+					echo "Sale Added Successfully!!";
 				}
 				else
 				{
-					echo "Purchase cannot be added!! Check Details again";
+					echo "Sale cannot be added!! Check Details again";
 				}
 			}
-			$q = "select Purchase_ID from purchase where Godown_ID = '$Gid' and Supplier_ID = '$Sid' and DOP = '$date' limit 1";
+			$q = "select Sale_ID from sale where Showroom_ID = '$Sid' and Customer_ID = '$Cid' and DOS = '$date' limit 1";
 			$result = mysqli_query($con, $q);
-			$Pid = mysqli_fetch_row($result)[0];
-			echo "<br><br<b>Purchase exists!! Purchase id is : $Pid</b><br><br>";
-			echo "<a href='editpurchase.php?Pid=".$Pid."&Gid=".$Gid."&Sid=".$Sid."''>Edit this purchase</a><br><br>";
+			$Saleid = mysqli_fetch_row($result)[0];
+			echo "<br><br<b>Sale exists!! Sale id is : $Saleid</b><br><br>";
+			echo "<a href='editsale.php?Saleid=".$Saleid."&Sid=".$Sid."&dor=".$date."&Cid=".$Cid."''>Edit this sale</a><br><br>";
 		}
 		else
 		{
-			echo "You are not permitted to add Purchase!!";
+			echo "You are not permitted to add Sale!!";
 		}
 	}
 

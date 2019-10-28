@@ -79,37 +79,55 @@ table, th, td {
 	{
 		$Iid = $_POST['Iid'];
 		$quant = $_POST['quant'];
-
-
-		$q = "select Quantity from purchase_item_details where Item_ID = $Iid and Purchase_ID = $Pid";
-
-		$con = mysqli_connect("127.0.0.1","root","");
-		mysqli_select_db($con, "supermarket");
-		
-		$result = mysqli_query($con, $q);
-
-		$n = mysqli_num_rows($result);
-		$qu = -1;
-		
-		if($n != 0)
+		if($quant > 0)
 		{
-			$qu = mysqli_fetch_row($result)[0];
-			$q = "Update `purchase_item_details` set `Quantity` = `Quantity` + $quant where Purchase_ID = $Pid and Item_ID = $Iid and `Quantity` + $quant >= 0";
-			if($qu + $quant >= 0)
-				$q1 = "Update `godown_item_details` set `Quantity` = `Quantity` + $quant where Godown_ID = $Gid and Item_ID = $Iid and `Quantity` + $quant >= 0";
-		}
-		else if($quant > -1)
-		{
-			$q = "INSERT INTO `purchase_item_details` VALUES ($Pid, $Iid, $quant)";
-			$q1 = "INSERT INTO `godown_item_details` VALUES ($Gid, $Iid, $quant)";
+			$q = "select Quantity from purchase_item_details where Item_ID = $Iid and Purchase_ID = $Pid";
+
+			$con = mysqli_connect("127.0.0.1","root","");
+			mysqli_select_db($con, "supermarket");
 			
-			// echo $q;
-		}
+			$result = mysqli_query($con, $q);
 
-		if(($n > 0 || $quant > -1) && mysqli_query($con, $q) && mysqli_query($con, $q1))
-		{
-			echo "Purchase Added Successfully!!";
-			header("location:editpurchase.php?Pid=".$Pid."&Gid=".$Gid."&Sid=".$Sid);
+			$n1 = mysqli_num_rows($result);
+			$qu = -1;
+			
+			if($n1 != 0)
+			{
+				$qu = mysqli_fetch_row($result)[0];
+				$q = "Update `purchase_item_details` set `Quantity` = `Quantity` + $quant where Purchase_ID = $Pid and Item_ID = $Iid and `Quantity` + $quant >= 0";
+			}
+			else
+			{
+				$q = "INSERT INTO `purchase_item_details` VALUES ($Pid, $Iid, $quant)";				
+				// echo $q;
+			}
+
+			$q2 = "select Quantity from godown_item_details where Item_ID = $Iid and Godown_ID = $Gid";
+			
+			$result2 = mysqli_query($con, $q2);
+
+			$n2 = mysqli_num_rows($result2);
+			if($n2 != 0)
+			{
+				$qu = mysqli_fetch_row($result)[0];
+				if($qu + $quant >= 0)
+					$q1 = "Update `godown_item_details` set `Quantity` = `Quantity` + $quant where Godown_ID = $Gid and Item_ID = $Iid and `Quantity` + $quant >= 0";
+			}
+			else
+			{
+				$q1 = "INSERT INTO `godown_item_details` VALUES ($Gid, $Iid, $quant)";
+				
+				// echo $q;
+			}
+
+
+
+
+			if(mysqli_query($con, $q) && mysqli_query($con, $q1))
+			{
+				echo "Purchase Added Successfully!!";
+				header("location:editpurchase.php?Pid=".$Pid."&Gid=".$Gid."&Sid=".$Sid);
+			}
 		}
 		else
 		{
