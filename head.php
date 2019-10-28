@@ -47,6 +47,8 @@
 						<li>
 							<a href="items.php">Items</a>
 						<li>
+							<a href="admin.php">Supervision</a>
+						<li>
 							<a style="color:black" href="logout.php"><h5>LOGOUT</h5></a>
 					</ul>
 
