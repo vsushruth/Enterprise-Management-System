@@ -87,6 +87,10 @@ html, body{
   background-color: #ddd;
 }
 
+.table{
+  width: 80%;
+  margin: 0 auto;
+}
 /* Create an active/current tablink class */
 .tab button.active {
   background-color: #ccc;

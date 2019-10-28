@@ -32,6 +32,7 @@ if ($conn->connect_error) {
 $sql = "SELECT * FROM item";
 $result = $conn->query($sql);
 
+echo "<h1><center>All Items</center></h1>";
 if ($result->num_rows > 0) {
     echo "<table class = 'table table-hover table-striped' ><tr><th>Item ID</th><th>Item Name</th><th>Item Units</th><th>Item Unit Price</th></tr>";
     // output data of each row
