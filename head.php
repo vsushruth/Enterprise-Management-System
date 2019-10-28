@@ -25,7 +25,7 @@
 							<img id="logo" src="reflux_logo.png" style="width: 50px; height: 50px; float: left;">
 						</li -->
 						<li class="nav-item">
-							<h1 style="color:black">Supermarket System</h1>
+							<h1 style="color:black">Supermarket</h1>
 						</li>
 					</ul>
 				</a>
@@ -36,7 +36,7 @@
 
 				<div class="collapse navbar-collapse text-center" id="navbarResponsive">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item active">
+						<li class="nav-item">
 							<a class="nav-link" href="suppliers.php">Suppliers</a>
 						</li>
 						<li class="nav-item">
@@ -59,6 +59,9 @@
 						</li>
 						<li class="nav-item">
 								<a class="nav-link" href="items.php">Items</a>
+						</li>
+						<li class="nav-item">
+								<a class="nav-link" href="admin.php">Supervision</a>
 						</li>
 						<li class="nav-item">
 								<a class="nav-link" style="color:black" href="logout.php"><h5>LOGOUT</h5></a>
