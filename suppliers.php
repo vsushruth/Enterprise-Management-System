@@ -35,7 +35,7 @@ $sql = "SELECT * FROM supplier";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<table><tr><th>Supplier ID</th><th>Supplier Name</th><th>Supplier Contact</th></tr>";
+    echo "<table  class = 'table table-hover table-striped'><tr><th>Supplier ID</th><th>Supplier Name</th><th>Supplier Contact</th></tr>";
     // output data of each row
     while($row = $result->fetch_assoc()) {
         echo "<tr><td>" . $row["Supplier_ID"]. "</td><td>" . $row["Supplier_Name"]. "</td><td>" . $row["Supplier_Contact"]. "</td></tr>";

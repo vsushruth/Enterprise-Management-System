@@ -33,7 +33,7 @@ $sql = "SELECT * FROM customer";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<table><tr><th>Customer ID</th><th>Customer Name</th><th>Sales Exec ID</th><th>Contact Number</th></tr>";
+    echo "<table class = 'table table-hover table-striped'><tr><th>Customer ID</th><th>Customer Name</th><th>Sales Exec ID</th><th>Contact Number</th></tr>";
     // output data of each row
     while($row = $result->fetch_assoc()) {
         echo "<tr><td>" . $row["Customer_ID"]. "</td><td>" . $row["Customer_Name"]. "</td><td>" . $row["Sales_Exec_ID"]. "</td><td>" . $row["Contact_Number"]. "</td></tr>";

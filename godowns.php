@@ -36,7 +36,7 @@ $sql = "SELECT * FROM godown";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<table><tr><th>Godown ID</th><th>Godown Location</th><th>Manager ID</th></tr>";
+    echo "<table class = 'table table-hover table-striped'><tr><th>Godown ID</th><th>Godown Location</th><th>Manager ID</th></tr>";
 
     while($row = $result->fetch_assoc()) {
         echo "<tr><td>" . $row["Godown_ID"]. "<a href='godown.php?Gid=".$row["Godown_ID"]."'><button type='submit' name='submit1'>More</button></a></td><td>" . $row["Godown_Location"]. "</td><td>" . $row["Manager_ID"]. "</td></tr>";

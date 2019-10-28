@@ -37,7 +37,7 @@ $sql = "SELECT * FROM godown_item_details natural join item where Godown_ID = $G
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<table><tr><th>Item ID</th><th>Item Name</th><th>Quantity</th><th>Price per unit</th><th>Total price</th></tr>";
+    echo "<table class = 'table table-hover table-striped'><tr><th>Item ID</th><th>Item Name</th><th>Quantity</th><th>Price per unit</th><th>Total price</th></tr>";
 
     while($row = $result->fetch_assoc()) {
         echo "<tr><td>" . $row["Item_ID"]. "</td><td>" . $row["Item_Name"]. "</td><td>" . $row["Quantity"] . "</td><td>Rs." . $row["Item_Unit_Price"] . " per " . $row["Item_Units"] ."</td><td>" . $row["Item_Unit_Price"] * $row["Quantity"]. "</td></tr>";
@@ -56,7 +56,7 @@ $sql = "SELECT * FROM purchase natural join purchase_item_details natural join g
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<table><tr><th>Date</th><th>Item ID</th><th>Item Name</th><th>Supplier ID</th><th>Supplier Name</th><th>Quantity</th><th>Price per unit</th><th>Total price</th></tr>";
+    echo "<table class = 'table table-hover table-striped'><tr><th>Date</th><th>Item ID</th><th>Item Name</th><th>Supplier ID</th><th>Supplier Name</th><th>Quantity</th><th>Price per unit</th><th>Total price</th></tr>";
 
     while($row = $result->fetch_assoc()) {
         echo "<tr><td>" . $row["DOP"]. "</td><td>" . $row["Item_ID"]. "</td><td>" . $row["Item_Name"]. "</td><td>" . $row["Supplier_ID"]. "</td><td>" . $row["Supplier_Name"]. "</td><td>" . $row["Quantity"] . "</td><td>Rs." . $row["Item_Unit_Price"] . " per " . $row["Item_Units"] ."</td><td>" . $row["Item_Unit_Price"] * $row["Quantity"]. "</td></tr>";
@@ -75,7 +75,7 @@ $sql = "SELECT * FROM restock natural join restock_item_details natural join ite
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<table><tr><th>Date</th><th>Item ID</th><th>Item Name</th><th>Showroom ID</th><th>Showroom Name</th><th>Quantity</th><th>Price per unit</th><th>Total price</th></tr>";
+    echo "<table class = 'table table-hover table-striped'><tr><th>Date</th><th>Item ID</th><th>Item Name</th><th>Showroom ID</th><th>Showroom Name</th><th>Quantity</th><th>Price per unit</th><th>Total price</th></tr>";
 
     while($row = $result->fetch_assoc()) {
         echo "<tr><td>" . $row["DOR"]. "</td><td>" . $row["Item_ID"]. "</td><td>" . $row["Item_Name"]. "</td><td>" . $row["Showroom_ID"]. "</td><td>" . $row["Showroom_Name"]. "</td><td>" . $row["Quantity"] . "</td><td>Rs." . $row["Item_Unit_Price"] . " per " . $row["Item_Units"] ."</td><td>" . $row["Item_Unit_Price"] * $row["Quantity"]. "</td></tr>";

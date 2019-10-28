@@ -33,7 +33,7 @@ $sql = "SELECT * FROM showroom";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<table><tr><th>Showroom ID</th><th>Showroom Name</th><th>Showroom Location</th><th>Manager ID</th></tr>";
+    echo "<table class = 'table table-hover table-striped'><tr><th>Showroom ID</th><th>Showroom Name</th><th>Showroom Location</th><th>Manager ID</th></tr>";
 
     while($row = $result->fetch_assoc()) {
         echo "<tr><td>" . $row["Showroom_ID"]."<a href='showroom.php?Sid=".$row["Showroom_ID"]."'><button type='submit' name='submit1'>More</button></a></td><td>". $row["Showroom_Name"]. "</td><td>" . $row["Showroom_Location"]. "</td><td>" . $row["Manager_ID"]. "</td></tr>";
