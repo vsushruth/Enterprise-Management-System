@@ -18,7 +18,6 @@
 </style>
 </head>
 <body>
-
 <?php
 	echo "<h3>Items already added: </h3>";
 	$Rid = $_GET['Rid'];
@@ -64,7 +63,6 @@
 
 	$conn->close();
 ?>
-
 <div class = "container-fluid row padding" >
     <div class="col-lg-3 col-md-6 col-sm-6" >
         <h1 style = "padding-left: 15%"><br>Add Items : </h1>
@@ -92,8 +90,6 @@
 		</form>
 	</div>
 </div>
-
-
 <?php
 	if(isset($_POST['button3']))
 	{
@@ -152,12 +148,11 @@
 		}
 		else
 		{
-			echo "Restock cannot be added!! Check Item ID and Quantity";
+			echo "Check Item ID and Quantity";
 		}
 	}
 
 ?>
-
 <br>
 <center><h3><a href='home.php' style = "color : white; font-weight : bold; padding-left : 50px; text-decoration: underline">Back</a></h3></center>
 <br><br><br>

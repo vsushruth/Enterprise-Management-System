@@ -20,8 +20,17 @@
 
 	if($n != 0)
 	{
-		echo "<br><br><center> <img src = 'error.png'> <br><br> <h3>Employee already Registered. Please go back and Login!! </h3></center>";
+		echo "<br><br><center> <img style='width:50px; height:50px' src = 'error.png'> <br><br> <h3>Employee already Registered. Please go back and Login!! </h3></center>";
 	}
+	else if(strlen($pass) < 6)
+	{
+		echo "<br><br><center> <img style='width:50px; height:50px' src = 'error.png'> <br><br> <h3>Password must be atleast 6 characters!!</h3></center>";
+	}
+	else if(!preg_match("/^[a-zA-Z]*$/", $name))
+	{
+		echo "<br><br><center> <img style='width:50px; height:50px' src = 'error.png'> <br><br> <h3>Only letters and spaces allowed for Name!!</h3></center>";
+	}
+
 	else
 	{
 		
@@ -44,7 +53,7 @@
 		}
 		else
 		{
-			echo "<br><br><center> <img src = 'error.png'> <br><br> <h3> Registration could not be done!! Check your SID </h3></center>";
+			echo "<br><br><center> <img style='width:50px; height:50px' src = 'error.png'> <br><br> <h3> Registration could not be done!! Check your SID </h3></center>";
 		}
 
 	}

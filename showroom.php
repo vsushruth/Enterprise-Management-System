@@ -101,11 +101,69 @@ if ($result->num_rows > 0) {
     echo "0 results";
 }
 
-
-
-
-
-
 $conn->close();
 ?>
 
+
+<div class = "container-fluid row padding" >
+    <div class="col-lg-3 col-md-6 col-sm-6" >    
+        <h3 style = "padding-left: 20%"><br>Add Employees : </h3>
+    </div>
+    <div class="col-lg-9 col-md-6 col-sm-6" >
+        <form method="post">
+            <label>Employee- ID</label>
+            <br>
+            <select name="id">
+            <?php
+                $mysqli = new mysqli($servername, $username, $password, $dbname);
+                $sqlSelect="SELECT * FROM employee";
+                $result = $mysqli-> query ($sqlSelect);
+                while ($row = mysqli_fetch_array($result)) {
+                    $rows1[] = $row;
+                }
+                foreach ($rows1 as $row) {
+                    print "<option value='" . $row['Employee_ID'] . "'>" .$row['Employee_ID']."(". $row['Employee_Name'] . ")</option>";
+                }
+            ?>
+            </select>
+            <button type="submit" name="button1">Add</button>
+        </form>
+    </div>
+</div>
+<br>
+<?php
+    if(isset($_POST['button1']))
+    {
+        $id = $_POST['id'];
+        
+        $con = mysqli_connect("127.0.0.1","root","");
+        mysqli_select_db($con, "supermarket");
+
+        $q = "select * from showroom_employee_details where Showroom_ID = $Sid and Employee_ID = $id";
+        
+        $result = mysqli_query($con, $q);
+
+        $n = mysqli_num_rows($result);
+
+        if($n != 0)
+        {
+            echo "Employee exists!!";
+        }
+        else
+        {
+            $q = "INSERT INTO `showroom_employee_details` VALUES ('$Sid', '$id')";
+            echo $q;
+
+            if(mysqli_query($con, $q))
+            {
+                echo "Employee Added Successfully!!";
+                header("location:showroom.php?Sid=".$Sid);
+            }
+            else
+            {
+                echo "Employee cannot be added!! Check Details entered";
+            }
+
+        }
+    }
+?>

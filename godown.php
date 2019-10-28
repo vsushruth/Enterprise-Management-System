@@ -5,7 +5,6 @@
 		header('location:login.php');
 	$Gid = $_GET['Gid'];
 ?>
-
 <?php include "head.php"; ?>
 <!DOCTYPE html>
 <html>
@@ -14,9 +13,7 @@
 </style>
 </head>
 <body>
-
 <?php
-
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -90,4 +87,3 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 ?>
-

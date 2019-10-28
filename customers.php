@@ -5,7 +5,6 @@
 		header('location:login.php');
 	$Eid = $_SESSION['Eid'];
 ?>
-
 <?php include "head.php"; ?>
 <!DOCTYPE html>
 <html>
@@ -42,8 +41,6 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 ?>
-
-
 <div class = "container-fluid row padding" >
     <div class="col-lg-4 col-md-6 col-sm-6" >
         <h1 style = "padding-left: 15%"><br>Add Customers : </h1>
@@ -64,7 +61,6 @@ $conn->close();
         </form>
     </div>
 </div>
-
 <?php
     if(isset($_POST['button2']))
     {

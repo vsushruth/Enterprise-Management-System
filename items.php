@@ -1,51 +1,36 @@
-<?php
+<?php include "head.php";
 	session_start();
 
 	if(!isset($_SESSION['Eid']))
 		header('location:login.php');
 	$Eid = $_SESSION['Eid'];
-?>
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "supermarket";
 
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-</style>
-</head>
-<body>
-<?php include "head.php"; ?>
-
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "supermarket";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$sql = "SELECT * FROM item";
-$result = $conn->query($sql);
-
-echo "<h1><center>All Items</center></h1>";
-if ($result->num_rows > 0) {
-    echo "<table class = 'table table-hover table-striped' ><tr><th>Item ID</th><th>Item Name</th><th>Item Units</th><th>Item Unit Price</th></tr>";
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        echo "<tr><td>" . $row["Item_ID"]. "</td><td>" . $row["Item_Name"]. "</td><td>" . $row["Item_Units"]. "</td><td>" . $row["Item_Unit_Price"]. "</td></tr>";
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
-    echo "</table>";
-} else {
-    echo "0 results";
-}
 
-$conn->close();
+    $sql = "SELECT * FROM item";
+    $result = $conn->query($sql);
+
+    echo "<h1><center>All Items</center></h1>";
+    if ($result->num_rows > 0) {
+        echo "<table class = 'table table-hover table-striped' ><tr><th>Item ID</th><th>Item Name</th><th>Item Units</th><th>Item Unit Price</th></tr>";
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+            echo "<tr><td>" . $row["Item_ID"]. "</td><td>" . $row["Item_Name"]. "</td><td>" . $row["Item_Units"]. "</td><td>" . $row["Item_Unit_Price"]. "</td></tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "0 results";
+    }
+    $conn->close();
 ?>
-
-
-<div class = "container-fluid row padding" >
+<div class = "container-fluid row padding">
     <div class="col-lg-3 col-md-6 col-sm-6" >    
         <h1 style = "padding-left: 20%"><br>Add Items : </h1>
     </div>
@@ -97,21 +82,13 @@ $conn->close();
         if($n != 0)
         {
             $q = "Update `item` set `Item_Unit_Price` = '$price' where Item_Name = '$name' and Item_Units = '$units'";
-            if(mysqli_query($con, $q))
-            {
-                echo "Item Added Successfully!!";
-                header('location:items.php');
-            }
-            else
-            {
-                echo "Item cannot be added!! Check Details entered";
-            }
             echo "Item updated!!";
         }
         else
         {
             $q = "INSERT INTO `item`(`Item_Name`, `Item_Units`, `Item_Unit_Price`) VALUES ('$name', '$units', '$price')";
-            // echo $q;
+            // echo $q
+        }
 
             if(mysqli_query($con, $q))
             {
@@ -122,11 +99,7 @@ $conn->close();
             {
                 echo "Item cannot be added!! Check Details entered";
             }
-
-        }
     }
 ?>
-
-
 </body>
 </html>
