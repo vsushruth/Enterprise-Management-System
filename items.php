@@ -1,9 +1,9 @@
 <?php
 	session_start();
 
-	if(!isset($_SESSION['Eid']))
-		header('location:login.php');
-	$Eid = $_SESSION['Eid'];
+	//if(!isset($_SESSION['Eid']))
+	//	header('location:login.php');
+	//$Eid = $_SESSION['Eid'];
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +16,8 @@ table, th, td {
 </style>
 </head>
 <body>
-<a href='home.php'>Back</a>
+<?php include "head.php"; ?>
+
 <?php
 $servername = "localhost";
 $username = "root";
@@ -32,7 +33,7 @@ $sql = "SELECT * FROM item";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<table><tr><th>Item ID</th><th>Item Name</th><th>Item Units</th><th>Item Unit Price</th></tr>";
+    echo "<table class = 'table table-hover table-striped' ><tr><th>Item ID</th><th>Item Name</th><th>Item Units</th><th>Item Unit Price</th></tr>";
     // output data of each row
     while($row = $result->fetch_assoc()) {
         echo "<tr><td>" . $row["Item_ID"]. "</td><td>" . $row["Item_Name"]. "</td><td>" . $row["Item_Units"]. "</td><td>" . $row["Item_Unit_Price"]. "</td></tr>";
@@ -46,16 +47,35 @@ $conn->close();
 ?>
 
 
-<h1>Add Item</h1>
-<form method="post">
-    <label>Name</label>
-    <input type="text" name="name" required>
-    <label>Units of Measurement</label>
-    <input type="varchar" name="units" required>
-	<label>Price per unit</label>
-    <input type="double" name="price" required>
-    <button type="submit" name="button2">Add</button>
-</form>
+<div class = "container-fluid row padding" >
+    <div class="col-lg-3 col-md-6 col-sm-6" >    
+        <h1 style = "padding-left: 20%"><br>Add Items : </h1>
+    </div>
+    <div class="col-lg-9 col-md-6 col-sm-6" >
+        <form method="post">
+            <label>Name</label>
+            <input type="text" name="name" required>
+            <br><br>
+            <label>Units of Measurement</label>
+            <input type="varchar" name="units" required>
+            <br><br>
+            <label>Price per unit</label>
+            <input type="double" name="price" required 
+                style = "width: 95%;
+                padding: 10px 20px;
+                margin: 3px 10px;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;"
+            >
+            <br><br>
+            <input type="submit" name="button2" value = "Add">
+        </form>
+    </div>
+</div>
+<br><br>
+<center><h3><a href='home.php' style = "color : white; font-weight : bold; padding-left : 50px; text-decoration: underline">Back</a></h3></center>
 
 <?php
     if(isset($_POST['button2']))

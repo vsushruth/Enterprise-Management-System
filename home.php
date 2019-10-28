@@ -8,8 +8,10 @@
 <?php include "head.php"; ?>
 <!-- <a href="logout.php">LOGOUT</a> -->
 
-
-<h1> Welcome <?php echo $_SESSION['Eid'] ?></h1>
+<br><br>
+<center><h1> Welcome <?php echo $_SESSION['Eid'] ?></h1></center>
+<br>
+<img src = "superExterior.jpg" style = " display: block; margin-left: auto; margin-right: auto; width: 50%;" >
 
 
 <!-- <a href="summary.php">Summary</a> -->
