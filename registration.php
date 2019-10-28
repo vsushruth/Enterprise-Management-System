@@ -20,7 +20,7 @@
 
 	if($n != 0)
 	{
-		echo "Employee already Registered. Please go back and Login!!";
+		echo "<br><br><center> <img src = 'error.png'> <br><br> <h3>Employee already Registered. Please go back and Login!! </h3></center>";
 	}
 	else
 	{
@@ -44,7 +44,7 @@
 		}
 		else
 		{
-			echo "Registration could not be done!! Check your SID";
+			echo "<br><br><center> <img src = 'error.png'> <br><br> <h3> Registration could not be done!! Check your SID </h3></center>";
 		}
 
 	}

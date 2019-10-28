@@ -29,6 +29,8 @@
 						</li>
 					</ul>
 				</a>
+
+
 				<ul class="navbar-nav ml-auto navbar-right">
 						<li>
 							<a href="suppliers.php">Suppliers</a>
@@ -49,6 +51,43 @@
 						<li>
 							<a style="color:black" href="logout.php"><h5>LOGOUT</h5></a>
 					</ul>
+
+
+				<button class = "navbar-toggler" type="button" data-toggle = "collapse" data-target="#navbarResponsive">
+				<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse text-center" id="navbarResponsive">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="suppliers.php">Suppliers</a>
+						</li>
+						<li class="nav-item">
+								<a class="nav-link" href="purchase.php">Purchase</a>
+						</li>
+						<li class="nav-item">
+								<a class="nav-link" href="godowns.php">Godowns</a>
+						</li>
+						<li class="nav-item">
+								<a class="nav-link" href="restock.php">Restock</a>
+						</li>
+						<li class="nav-item">
+								<a class="nav-link" href="showrooms.php">Showrooms</a>
+						</li>
+						<li class="nav-item">
+								<a class="nav-link" href="sale.php">Sale</a>
+						</li>
+						<li class="nav-item">
+								<a class="nav-link" href="customers.php">Customers</a>
+						</li>
+						<li class="nav-item">
+								<a class="nav-link" href="items.php">Items</a>
+						</li>
+						<li class="nav-item">
+								<a class="nav-link" style="color:black" href="logout.php"><h5>LOGOUT</h5></a>
+						</li>
+					</ul>
+				</div>
 
 			</div>
 		</nav>

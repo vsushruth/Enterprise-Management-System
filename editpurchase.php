@@ -1,13 +1,13 @@
 <?php
 	session_start();
 
-	/*if(!isset($_SESSION['Eid']))
+	if(!isset($_SESSION['Eid']))
 		header('location:login.php');
 
 	$servername = "localhost";
 	$username = "root";
 	$password = "";
-	$dbname = "supermarket";*/
+	$dbname = "supermarket";
 ?>
 
 <?php include "head.php"; ?>
@@ -78,7 +78,15 @@ table, th, td {
 			<br><br>
 			<label><h5>Quantity</h5></label>
 			<br>
-			<input type='int' name='quant' required>
+			<input type='int' name='quant' required
+				style = "width: 80%;
+				padding: 10px 20px;
+				margin: 3px 10px;
+				display: inline-block;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				box-sizing: border-box;"
+			>
 			<br><br>
 			<button type='submit' name='button3'>Add</button>
 		</form>
