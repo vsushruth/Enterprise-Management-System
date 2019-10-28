@@ -31,14 +31,15 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM godown";
+$sql = "SELECT * FROM godown join employee on godown.Manager_ID = employee.Employee_ID order by Godown_ID";
+// echo $sql;
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<table class = 'table table-hover table-striped'><tr><th>Godown ID</th><th>Godown Location</th><th>Manager ID</th></tr>";
+    echo "<table class = 'table table-hover table-striped'><tr><th>Godown ID</th><th>Godown Location</th><th>Manager Name</th></tr>";
 
     while($row = $result->fetch_assoc()) {
-        echo "<tr><td>" . $row["Godown_ID"]. "<a href='godown.php?Gid=".$row["Godown_ID"]."'><button type='submit' name='submit1'>More</button></a></td><td>" . $row["Godown_Location"]. "</td><td>" . $row["Manager_ID"]. "</td></tr>";
+        echo "<tr><td>" . $row["Godown_ID"]. "<a href='godown.php?Gid=".$row["Godown_ID"]."'><img src='1.png' style='width:30px; height30px; margin-left:20%;'></a></td><td>" . $row["Godown_Location"]. "</td><td>" . $row["Employee_Name"]. "</td></tr>";
     }
     echo "</table>";
 } else {

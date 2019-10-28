@@ -30,14 +30,14 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM showroom";
+$sql = "SELECT * FROM showroom join employee on showroom.Manager_ID = employee.Employee_ID order by Showroom_ID";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     echo "<table class = 'table table-hover table-striped'><tr><th>Showroom ID</th><th>Showroom Name</th><th>Showroom Location</th><th>Manager ID</th></tr>";
 
     while($row = $result->fetch_assoc()) {
-        echo "<tr><td>" . $row["Showroom_ID"]."<a href='showroom.php?Sid=".$row["Showroom_ID"]."'><button type='submit' name='submit1'>More</button></a></td><td>". $row["Showroom_Name"]. "</td><td>" . $row["Showroom_Location"]. "</td><td>" . $row["Manager_ID"]. "</td></tr>";
+        echo "<tr><td>" . $row["Showroom_ID"]."<a href='showroom.php?Sid=".$row["Showroom_ID"]."'><img src='1.png' style='width:30px; height30px; margin-left:20%;'></a></td><td>". $row["Showroom_Name"]. "</td><td>" . $row["Showroom_Location"]. "</td><td>" . $row["Employee_Name"]. "</td></tr>";
     }
     echo "</table>";
 } else {
