@@ -6,6 +6,7 @@
 	$Eid = $_SESSION['Eid'];
 ?>
 
+<?php include "head.php"; ?>
 <!DOCTYPE html>
 <html>
 <head>

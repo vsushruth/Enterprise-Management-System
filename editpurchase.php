@@ -9,6 +9,8 @@
 	$password = "";
 	$dbname = "supermarket";
 ?>
+
+<?php include "head.php"; ?>
 <!DOCTYPE html>
 <html>
 <head>

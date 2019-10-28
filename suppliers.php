@@ -5,6 +5,8 @@
 	if(!isset($_SESSION['Eid']))
 		header('location:login.php');
 ?>
+
+<?php include "head.php"; ?>
 <!DOCTYPE html>
 <html>
 <head>

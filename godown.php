@@ -6,6 +6,7 @@
 	$Gid = $_GET['Gid'];
 ?>
 
+<?php include "head.php"; ?>
 <!DOCTYPE html>
 <html>
 <head>
