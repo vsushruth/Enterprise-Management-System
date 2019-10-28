@@ -87,10 +87,11 @@ $conn->close();
         $name = $_POST['name'];
         $units = $_POST['units'];
         $price = $_POST['price'];
-        $q = "select * from item where Item_Name = '$name' and Item_Unit_Price = '$price' and Item_Units = '$units'";
-        // echo $q;
+        
         $con = mysqli_connect("127.0.0.1","root","");
         mysqli_select_db($con, "supermarket");
+
+        $q = "select * from item where Item_Name = '$name' and Item_Units = '$units'";
         
         $result = mysqli_query($con, $q);
 
@@ -98,12 +99,22 @@ $conn->close();
 
         if($n != 0)
         {
-            echo "Item exists!!";
+            $q = "Update `item` set `Item_Unit_Price` = '$price' where Item_Name = '$name' and Item_Units = '$units'";
+            if(mysqli_query($con, $q))
+            {
+                echo "Item Added Successfully!!";
+                header('location:items.php');
+            }
+            else
+            {
+                echo "Item cannot be added!! Check Details entered";
+            }
+            echo "Item updated!!";
         }
         else
         {
             $q = "INSERT INTO `item`(`Item_Name`, `Item_Units`, `Item_Unit_Price`) VALUES ('$name', '$units', '$price')";
-            echo $q;
+            // echo $q;
 
             if(mysqli_query($con, $q))
             {
