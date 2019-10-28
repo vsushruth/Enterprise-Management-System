@@ -30,7 +30,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-echo "<h1>Items in Showroom</h1>";
+echo "<h1><center>Items in Showroom</center></h1>";
 
 
 $sql = "SELECT * FROM showroom_item_details natural join item where Showroom_ID = $Sid";
@@ -49,7 +49,7 @@ if ($result->num_rows > 0) {
 
 
 
-echo "<h1>Sale history</h1>";
+echo "<h1><center>Sale history</center></h1>";
 
 
 $sql = "SELECT * FROM sale natural join sale_item_details natural join showroom natural join item natural join customer where Showroom_ID = $Sid";
@@ -68,7 +68,7 @@ if ($result->num_rows > 0) {
 
 
 
-echo "<h1>Restock history</h1>";
+echo "<h1><center>Restock history</center></h1>";
 
 
 $sql = "SELECT * FROM restock natural join restock_item_details natural join item where Showroom_ID = $Sid";
@@ -87,7 +87,7 @@ if ($result->num_rows > 0) {
 }
 
 
-echo "<h1>Employee details</h1>";
+echo "<h1><center>Employee details</center></h1>";
 
 
 $sql = "SELECT * FROM showroom_employee_details natural join employee where Showroom_ID = $Sid";

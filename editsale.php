@@ -20,7 +20,8 @@ table, th, td {
 </style>
 </head>
 <body>
-<a href='sale.php'>Back</a>
+
+
 <?php
 	echo "<h3>Items already added: </h3>";
 	$Saleid = $_GET['Saleid'];
@@ -67,14 +68,25 @@ table, th, td {
 	$conn->close();
 ?>
 
-<h3>Add items:</h3>
-<form method='post'>
-    <label>Item_ID</label>
-    <input type='text' name='Iid' required>
-    <label>Quantity</label>
-    <input type='int' name='quant' required>
-    <button type='submit' name='button3'>Add</button>
-</form>
+<div class = "container-fluid row padding" >
+    <div class="col-lg-3 col-md-6 col-sm-6" >
+        <h1 style = "padding-left: 15%"><br>Add Items : </h1>
+    </div>
+
+    <div class="col-lg-9 col-md-6 col-sm-6" >
+		<form method='post'>
+			<label><h5>Item_ID</h5></label>
+			<br>
+			<input type='text' name='Iid' required>
+			<br><br>
+			<label><h5>Quantity</h5></label>
+			<br>
+			<input type='int' name='quant' required>
+			<br><br>
+			<button type='submit' name='button3'>Add</button>
+		</form>
+	</div>
+</div>
 
 <?php
 	if(isset($_POST['button3']))
@@ -139,3 +151,10 @@ table, th, td {
 	}
 
 ?>
+
+<br>
+<center><h3><a href='home.php' style = "color : white; font-weight : bold; padding-left : 50px; text-decoration: underline">Back</a></h3></center>
+<br><br><br>
+
+</body>
+</html>

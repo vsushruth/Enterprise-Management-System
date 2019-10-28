@@ -1,8 +1,8 @@
 <?php
     session_start();
 
-    if(!isset($_SESSION['Eid']))
-        header('location:login.php');
+    //if(!isset($_SESSION['Eid']))
+      //  header('location:login.php');
 ?>
 
 <?php include "head.php"; ?>
@@ -16,8 +16,9 @@ table, th, td {
 </style>
 </head>
 <body>
-<a href='home.php'>Back</a>
-<h1>All Showrooms</h1>
+
+<br><br>
+<h1><center>All Showrooms</center></h1>
 <?php
 $servername = "localhost";
 $username = "root";
@@ -45,30 +46,43 @@ if ($result->num_rows > 0) {
 $conn->close();
 ?>
 
+<div class = "container-fluid row padding" >
+    <div class="col-lg-4 col-md-6 col-sm-6" >
+        <h1 style = "padding-left: 15%; padding-top:10%"><br>Add Showrooms : </h1>
+    </div>
 
-<h1>Add Showroom</h1>
-<form method="post">
-    <label>Name</label>
-    <input type="text" name="name" required>
-    <label>Location</label>
-    <input type="text" name="loc" required>
-    <label>Manager-ID</label>
-    <select name="Mid">
-    <?php
-        $mysqli = new mysqli($servername, $username, $password, $dbname);
-        $sqlSelect="SELECT * FROM employee";
-        $result = $mysqli-> query ($sqlSelect);
-        while ($row = mysqli_fetch_array($result)) {
-            $rows[] = $row;
-        }
-        foreach ($rows as $row) {
-            print "<option value='" . $row['Employee_ID'] . "'>" .$row['Employee_ID']."(". $row['Employee_Name'] . ")</option>";
-        }
-        $mysqli->close();
-    ?>
-    </select>
-    <button type="submit" name="button2">Add</button>
-</form>
+    <div class="col-lg-8 col-md-6 col-sm-6" >
+        <form method="post">
+            <label><h5>Name</h5></label>
+            <br>
+            <input type="text" name="name" required>
+            <br><br>
+            <label><h5>Location</h5></label>
+            <br>
+            <input type="text" name="loc" required>
+            
+            <br><br>
+            <label><h5>Manager-ID</h5></label>
+            <br>
+            <select name="Mid">
+            <?php
+                $mysqli = new mysqli($servername, $username, $password, $dbname);
+                $sqlSelect="SELECT * FROM employee";
+                $result = $mysqli-> query ($sqlSelect);
+                while ($row = mysqli_fetch_array($result)) {
+                    $rows[] = $row;
+                }
+                foreach ($rows as $row) {
+                    print "<option value='" . $row['Employee_ID'] . "'>" .$row['Employee_ID']."(". $row['Employee_Name'] . ")</option>";
+                }
+                $mysqli->close();
+            ?>
+            </select>
+            <br><br>
+            <button type="submit" name="button2">Add</button>
+        </form>
+    </div>
+</div>
 
 <?php
     if(isset($_POST['button2']) && $_SESSION['Eid'] == 1)
@@ -111,6 +125,12 @@ $conn->close();
         echo "You are not permitted to add Showroom!!";
     }
 ?>
+
+
+<br>
+<center><h3><a href='home.php' style = "color : white; font-weight : bold; padding-left : 50px; text-decoration: underline">Back</a></h3></center>
+<br><br><br>
+
 
 </body>
 </html>

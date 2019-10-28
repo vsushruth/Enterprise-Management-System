@@ -17,7 +17,6 @@ table, th, td {
 </style>
 </head>
 <body>
-<a href='home.php'>Back</a>
 <?php
 $servername = "localhost";
 $username = "root";
@@ -47,14 +46,26 @@ $conn->close();
 ?>
 
 
-<h1>Add Customer</h1>
-<form method="post">
-    <label>Name</label>
-    <input type="text" name="name" required>
-    <label>Contact</label>
-    <input type="varchar" name="contact" required>
-    <button type="submit" name="button2">Add</button>
-</form>
+<div class = "container-fluid row padding" >
+    <div class="col-lg-4 col-md-6 col-sm-6" >
+        <h1 style = "padding-left: 15%"><br>Add Customers : </h1>
+    </div>
+
+    <div class="col-lg-8 col-md-6 col-sm-6" >
+        <form method="post">
+            <br>
+            <label><h5>Name</h5></label>
+            <br>
+            <input type="text" name="name" required>
+            <br><br>
+            <label><h5>Contact</h5></label>
+            <br>
+            <input type="varchar" name="contact" required>
+            <br><br>
+            <input type="submit" name="button2" value = "Add">
+        </form>
+    </div>
+</div>
 
 <?php
     if(isset($_POST['button2']))
@@ -93,6 +104,9 @@ $conn->close();
     }
 ?>
 
+<br>
+<center><h3><a href='home.php' style = "color : white; font-weight : bold; padding-left : 50px; text-decoration: underline">Back</a></h3></center>
+<br><br><br>
 
 </body>
 </html>

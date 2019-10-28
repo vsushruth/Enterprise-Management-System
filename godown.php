@@ -30,7 +30,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-echo "<h1>Items in Godown</h1>";
+echo "<h1><center>Items in Godown</center></h1>";
 
 
 $sql = "SELECT * FROM godown_item_details natural join item where Godown_ID = $Gid";
@@ -49,7 +49,7 @@ if ($result->num_rows > 0) {
 
 
 
-echo "<h1>Purchase history</h1>";
+echo "<br><br><h1><center>Purchase history</center></h1>";
 
 
 $sql = "SELECT * FROM purchase natural join purchase_item_details natural join godown natural join item natural join supplier where Godown_ID = $Gid order by DOP";
@@ -68,7 +68,7 @@ if ($result->num_rows > 0) {
 
 
 
-echo "<h1>Restock history</h1>";
+echo "<br><br><h1><center>Restock history</center></h1>";
 
 
 $sql = "SELECT * FROM restock natural join restock_item_details natural join item natural join showroom where Godown_ID = $Gid order by DOR";

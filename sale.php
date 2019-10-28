@@ -1,13 +1,13 @@
 <?php
 	session_start();
 
-	if(!isset($_SESSION['Eid']))
+	/*if(!isset($_SESSION['Eid']))
 		header('location:login.php');
 
 	$servername = "localhost";
 	$username = "root";
 	$password = "";
-	$dbname = "supermarket";
+	$dbname = "supermarket";*/
 ?>
 
 <?php include "head.php"; ?>
@@ -21,42 +21,56 @@ table, th, td {
 </style>
 </head>
 <body>
-<a href='home.php'>Back</a>
 
-<h1>Add Sale</h1>
-<form method="post">
-	<label>Customer ID</label>
-	<select name="Cid">
-	<?php
-		$mysqli = new mysqli($servername, $username, $password, $dbname);
-		$sqlSelect="SELECT * FROM customer";
-		$result = $mysqli-> query ($sqlSelect);
-		while ($row = mysqli_fetch_array($result)) {
-	    	$rows[] = $row;
-		}
-		foreach ($rows as $row) {
-		    print "<option value='" . $row['Customer_ID'] . "'>" .$row['Customer_ID']."(". $row['Customer_Name'] . ")</option>";
-		}
-	?>
-	</select>
-	<label>Showroom ID</label>
-	<select name="Sid">
-	<?php
-		$mysqli = new mysqli($servername, $username, $password, $dbname);
-		$sqlSelect="SELECT * FROM showroom";
-		$result = $mysqli-> query ($sqlSelect);
-		while ($row = mysqli_fetch_array($result)) {
-	    	$rows1[] = $row;
-		}
-		foreach ($rows1 as $row) {
-		    print "<option value='" . $row['Showroom_ID'] . "'>" .$row['Showroom_ID']."(". $row['Showroom_Location'] . ")</option>";
-		}
-	?>
-	</select>
-	<label>Date of Sale</label>
-	<input type="Date" name="date">
-	<button type="submit" name="button1">Add</button>
-</form>
+
+<div class = "container-fluid row padding" >
+    <div class="col-lg-4 col-md-6 col-sm-6" >
+        <h1 style = "padding-left: 25%; padding-top: 10%"><br>Sales : </h1>
+    </div>
+
+    <div class="col-lg-8 col-md-6 col-sm-6" >
+		<form method="post">
+			<label><h5>Customer ID</h5></label>
+			<br>
+			<select name="Cid">
+			<?php
+				$mysqli = new mysqli($servername, $username, $password, $dbname);
+				$sqlSelect="SELECT * FROM customer";
+				$result = $mysqli-> query ($sqlSelect);
+				while ($row = mysqli_fetch_array($result)) {
+					$rows[] = $row;
+				}
+				foreach ($rows as $row) {
+					print "<option value='" . $row['Customer_ID'] . "'>" .$row['Customer_ID']."(". $row['Customer_Name'] . ")</option>";
+				}
+			?>
+			</select>
+			<br><br>
+			<label><h5>Showroom ID</h5></label>
+			<br>
+			<select name="Sid">
+			<?php
+				$mysqli = new mysqli($servername, $username, $password, $dbname);
+				$sqlSelect="SELECT * FROM showroom";
+				$result = $mysqli-> query ($sqlSelect);
+				while ($row = mysqli_fetch_array($result)) {
+					$rows1[] = $row;
+				}
+				foreach ($rows1 as $row) {
+					print "<option value='" . $row['Showroom_ID'] . "'>" .$row['Showroom_ID']."(". $row['Showroom_Location'] . ")</option>";
+				}
+			?>
+			</select>
+			<br><br>
+			<label><h5>Date of Sale</h5></label>
+			<br>
+			<input type="Date" name="date">
+			<br><br>
+			<button type="submit" name="button1">Add</button>
+
+		</form>
+	</div>
+</div>
 
 <?php
 	function isShowroomManager($mid, $sid)
@@ -149,6 +163,10 @@ table, th, td {
 
 	
 ?>
+
+<br>
+<center><h3><a href='home.php' style = "color : white; font-weight : bold; padding-left : 50px; text-decoration: underline">Back</a></h3></center>
+<br><br><br>
 
 </body>
 </html>

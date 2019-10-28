@@ -22,43 +22,56 @@ table, th, td {
 </style>
 </head>
 <body>
-<a href='home.php'>Back</a>
 
-<h1>Add Purchase</h1>
-<form method="post">
-	<label>Supplier ID</label>
-	<select name="Sid">
-	<?php
-		$mysqli = new mysqli($servername, $username, $password, $dbname);
-		$sqlSelect="SELECT * FROM supplier";
-		$result = $mysqli-> query ($sqlSelect);
-		while ($row = mysqli_fetch_array($result)) {
-	    	$rows[] = $row;
-		}
-		foreach ($rows as $row) {
-		    print "<option value='" . $row['Supplier_ID'] . "'>" .$row['Supplier_ID']."(". $row['Supplier_Name'] . ")</option>";
-		}
-	?>
-	</select>
-	<label>Godown ID</label>
-	<select name="Gid">
-	<?php
-		$mysqli = new mysqli($servername, $username, $password, $dbname);
-		$sqlSelect="SELECT * FROM godown";
-		$result = $mysqli-> query ($sqlSelect);
-		while ($row = mysqli_fetch_array($result)) {
-	    	$rows1[] = $row;
-		}
-		foreach ($rows1 as $row) {
-		    print "<option value='" . $row['Godown_ID'] . "'>" .$row['Godown_ID']."(". $row['Godown_Location'] . ")</option>";
-		    // echo $row['Godown_Location'];
-		}
-	?>
-	</select>
-	<label>Date of Purchase</label>
-	<input type="Date" name="date">
-	<button type="submit" name="button1">Add</button>
-</form>
+<div class = "container-fluid row padding" >
+    <div class="col-lg-3 col-md-6 col-sm-6" >
+        <h1 style = "padding-left: 15%"><br>Add Purchases : </h1>
+    </div>
+
+    <div class="col-lg-9 col-md-6 col-sm-6" >
+		<form method="post">
+			<br>
+			<label><h5>Supplier ID</h5></label>
+			<br>
+			<select name="Sid">
+			<?php
+				$mysqli = new mysqli($servername, $username, $password, $dbname);
+				$sqlSelect="SELECT * FROM supplier";
+				$result = $mysqli-> query ($sqlSelect);
+				while ($row = mysqli_fetch_array($result)) {
+					$rows[] = $row;
+				}
+				foreach ($rows as $row) {
+					print "<option value='" . $row['Supplier_ID'] . "'>" .$row['Supplier_ID']."(". $row['Supplier_Name'] . ")</option>";
+				}
+			?>
+			</select>
+			<br><br>
+			<label><h5>Godown ID</h5></label>
+			<br>
+			<select name="Gid">
+			<?php
+				$mysqli = new mysqli($servername, $username, $password, $dbname);
+				$sqlSelect="SELECT * FROM godown";
+				$result = $mysqli-> query ($sqlSelect);
+				while ($row = mysqli_fetch_array($result)) {
+					$rows1[] = $row;
+				}
+				foreach ($rows1 as $row) {
+					print "<option value='" . $row['Godown_ID'] . "'>" .$row['Godown_ID']."(". $row['Godown_Location'] . ")</option>";
+					// echo $row['Godown_Location'];
+				}
+			?>
+			</select>
+			<br><br>
+			<label><h5>Date of Purchase</h5></label>
+			<br>
+			<input type="Date" name="date">
+			<br><br>
+			<button type="submit" name="button1">Add</button>
+		</form>
+	</div>
+</div>
 
 <?php
 	function isManager($mid, $gid)
@@ -152,6 +165,10 @@ table, th, td {
 
 	
 ?>
+
+<br>
+<center><h3><a href='home.php' style = "color : white; font-weight : bold; padding-left : 50px; text-decoration: underline">Back</a></h3></center>
+<br><br><br>
 
 </body>
 </html>

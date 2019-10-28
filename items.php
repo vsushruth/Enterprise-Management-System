@@ -1,9 +1,9 @@
 <?php
 	session_start();
 
-	//if(!isset($_SESSION['Eid']))
-	//	header('location:login.php');
-	//$Eid = $_SESSION['Eid'];
+	if(!isset($_SESSION['Eid']))
+		header('location:login.php');
+	$Eid = $_SESSION['Eid'];
 ?>
 
 <!DOCTYPE html>
@@ -55,14 +55,17 @@ $conn->close();
     <div class="col-lg-9 col-md-6 col-sm-6" >
         <form method="post">
             <label>Name</label>
+            <br>
             <input type="text" name="name" required>
             <br><br>
             <label>Units of Measurement</label>
+            <br>
             <input type="varchar" name="units" required>
             <br><br>
             <label>Price per unit</label>
+            <br>
             <input type="double" name="price" required 
-                style = "width: 95%;
+                style = "width: 80%;
                 padding: 10px 20px;
                 margin: 3px 10px;
                 display: inline-block;
@@ -75,9 +78,9 @@ $conn->close();
         </form>
     </div>
 </div>
-<br><br>
+<br>
 <center><h3><a href='home.php' style = "color : white; font-weight : bold; padding-left : 50px; text-decoration: underline">Back</a></h3></center>
-
+<br><br><br>
 <?php
     if(isset($_POST['button2']))
     {

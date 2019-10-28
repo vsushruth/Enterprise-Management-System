@@ -18,9 +18,8 @@ table, th, td {
 </style>
 </head>
 <body>
-<a href='home.php'>Back</a>
 
-<h1>All Godowns</h1>
+<br><br><h1><center>All Godowns</center></h1>
 <?php
 $servername = "localhost";
 $username = "root";
@@ -49,26 +48,38 @@ $conn->close();
 ?>
 
 
-<h1>Add Godown</h1>
-<form method="post">
-	<label>Location</label>
-	<input type="text" name="loc" required>
-	<label>Manager-ID</label>
-	<select name="Mid">
-	<?php
-		$mysqli = new mysqli($servername, $username, $password, $dbname);
-		$sqlSelect="SELECT * FROM employee";
-		$result = $mysqli-> query ($sqlSelect);
-		while ($row = mysqli_fetch_array($result)) {
-	    	$rows[] = $row;
-		}
-		foreach ($rows as $row) {
-		    print "<option value='" . $row['Employee_ID'] . "'>" .$row['Employee_ID']."(". $row['Employee_Name'] . ")</option>";
-		}
-	?>
-	</select>
-	<button type="submit" name="button1">Add</button>
-</form>
+<div class = "container-fluid row padding" >
+    <div class="col-lg-4 col-md-6 col-sm-6" >
+        <h1 style = "padding-left: 15%"><br>Add<br> Godowns : </h1>
+    </div>
+
+    <div class="col-lg-8 col-md-6 col-sm-6" >
+		<form method="post">
+			<label>Location</label>
+			<br>
+			<input type="text" name="loc" required>
+			<br><br>
+			<label>Manager-ID</label>
+			<br>
+			<select name="Mid">
+			<?php
+				$mysqli = new mysqli($servername, $username, $password, $dbname);
+				$sqlSelect="SELECT * FROM employee";
+				$result = $mysqli-> query ($sqlSelect);
+				while ($row = mysqli_fetch_array($result)) {
+					$rows[] = $row;
+				}
+				foreach ($rows as $row) {
+					print "<option value='" . $row['Employee_ID'] . "'>" .$row['Employee_ID']."(". $row['Employee_Name'] . ")</option>";
+				}
+			?>
+			</select>
+			<br><br>
+			<button type="submit" name="button1">Add</button>
+		</form>
+	</div>
+</div>
+
 
 <?php
 	if(isset($_POST['button1']) && $_SESSION['Eid'] == 1)
@@ -109,6 +120,11 @@ $conn->close();
 		echo "You are not permitted to add Godown!!";
 	}
 ?>
+
+
+<br>
+<center><h3><a href='home.php' style = "color : white; font-weight : bold; padding-left : 50px; text-decoration: underline">Back</a></h3></center>
+<br><br><br>
 
 </body>
 </html>

@@ -61,9 +61,11 @@
 							<div>
 								<form action="login.php" method="post">
 									<label>Employee-ID</label>
+									<br>
 									<input type="text" name="Eid" required>
 									<br>
 									<label>Password</label>
+									<br>
 									<input type="password" name="pass" required>
 									<br><br>
 									<input type ="submit" value = "Submit">
@@ -77,21 +79,27 @@
 						<div>
 							<form action="registration.php" method="post">
 									<label>Name</label>
+									<br>
 									<input type="text" name="name" required>
 									<br><br>
 									<label>Supervisor_ID</label>
+									<br>
 									<input type="text" name="Sid">
 									<br><br>
 									<label>House Number</label>
+									<br>
 									<input type="text" name="hno" required>
 									<br><br>
 									<label>Street</label>
+									<br>
 									<input type="text" name="street" required>
 									<br><br>
 									<label>Pincode</label>
+									<br>
 									<input type = "number" name="pincode" required>
 									<br><br>
 									<label>Password</label>
+									<br>
 									<input type="password" name="pass" required>
 									<br><br>
 									<input type="submit"  name="but" value = "Submit">
