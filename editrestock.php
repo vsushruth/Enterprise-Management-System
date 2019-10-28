@@ -48,7 +48,7 @@ table, th, td {
 
 	echo "<h3>All items</h3>";
 
-	$sql = "SELECT * FROM godown_item_details natural join item  natural join purchase where Godown_ID = $Gid  and DOP < '$dor' group by Item_ID";
+	$sql = "SELECT * FROM godown_item_details natural join item  natural join purchase where Godown_ID = $Gid  and DOP <= '$dor' group by Item_ID";
 	echo $sql;
 
 	$result = $conn->query($sql);
@@ -145,7 +145,7 @@ table, th, td {
 			if(mysqli_query($con, $q0) && mysqli_query($con, $q1) && mysqli_query($con, $q2))
 			{
 				echo "Purchase Added Successfully!!";
-				header("location:editrestock.php?Rid=".$Rid."&Gid=".$Gid."&Sid=".$Sid);
+				header("location:editrestock.php?Rid=".$Rid."&Gid=".$Gid."&dos=".$dos."&Sid=".$Sid);
 			}
 			else
 			{

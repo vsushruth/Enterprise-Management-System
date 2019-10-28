@@ -30,29 +30,6 @@
 					</ul>
 				</a>
 
-
-				<ul class="navbar-nav ml-auto navbar-right">
-						<li>
-							<a href="suppliers.php">Suppliers</a>
-						<li>
-							<a href="purchase.php">Purchase</a>
-						<li>
-							<a href="godowns.php">Godowns</a>
-						<li>
-							<a href="restock.php">Restock</a>
-						<li>
-							<a href="showrooms.php">Showrooms</a>
-						<li>
-							<a href="sale.php">Sale</a>
-						<li>
-							<a href="customers.php">Customers</a>
-						<li>
-							<a href="items.php">Items</a>
-						<li>
-							<a style="color:black" href="logout.php"><h5>LOGOUT</h5></a>
-					</ul>
-
-
 				<button class = "navbar-toggler" type="button" data-toggle = "collapse" data-target="#navbarResponsive">
 				<span class="navbar-toggler-icon"></span>
 				</button>
