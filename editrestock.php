@@ -31,7 +31,7 @@ table, th, td {
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
 	}
-	$sql = "SELECT * FROM restock_item_details natural join item natural join restock where Restock_ID = $Rid and DOR < $dor";
+	$sql = "SELECT * FROM restock_item_details natural join item natural join restock where Restock_ID = $Rid";
 
 	$result = $conn->query($sql);
 

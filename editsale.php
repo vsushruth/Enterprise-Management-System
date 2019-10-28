@@ -20,18 +20,18 @@ table, th, td {
 </style>
 </head>
 <body>
-<a href='restock.php'>Back</a>
+<a href='sale.php'>Back</a>
 <?php
 	echo "<h3>Items already added: </h3>";
-	$Rid = $_GET['Rid'];
-	$Gid = $_GET['Gid'];
+	$Saleid = $_GET['Saleid'];
+	$Cid = $_GET['Cid'];
 	$Sid = $_GET['Sid'];
-	$dor = $_GET['dor'];
+	$dos = $_GET['dos'];
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
 	}
-	$sql = "SELECT * FROM restock_item_details natural join item natural join restock where Restock_ID = $Rid and DOR < $dor";
+	$sql = "SELECT * FROM sale_item_details natural join item natural join sale where Sale_ID = $Saleid";
 
 	$result = $conn->query($sql);
 
@@ -48,8 +48,8 @@ table, th, td {
 
 	echo "<h3>All items</h3>";
 
-	$sql = "SELECT * FROM godown_item_details natural join item  natural join purchase where Godown_ID = $Gid  and DOP < '$dor' group by Item_ID";
-	echo $sql;
+	$sql = "SELECT * FROM showroom_item_details natural join item where Showroom_ID = $Sid group by Item_ID";
+	// echo $sql;
 
 	$result = $conn->query($sql);
 
@@ -86,46 +86,46 @@ table, th, td {
 		mysqli_select_db($con, "supermarket");
 		
 		//Check quantity available
-		$q0 = "SELECT Quantity FROM godown_item_details natural join item where Godown_ID = $Gid and Item_ID = $Iid";
+		$q0 = "SELECT Quantity FROM showroom_item_details natural join item where Showroom_ID = $Sid and Item_ID = $Iid";
 		$result0 = mysqli_query($con, $q0);
 		$qu = mysqli_fetch_row($result0)[0];
 
-		//Check if restock already exists
-		$q1 = "SELECT Quantity FROM restock_item_details natural join item where Restock_ID = $Rid and Item_ID = $Iid";
+		//Check if sale already exists
+		$q1 = "SELECT Quantity FROM sale_item_details natural join item where Sale_ID = $Saleid and Item_ID = $Iid";
 		$result1 = mysqli_query($con, $q1);
 		$n1 = mysqli_num_rows($result1);
 		
 
-		//Check if item exists in showroom
-		$q2 = "SELECT Quantity FROM showroom_item_details natural join item where Showroom_ID = $Rid and Item_ID = $Iid";
-		$result2 = mysqli_query($con, $q2);
-		$n2 = mysqli_num_rows($result2);
+		// //Check if item exists in showroom
+		// $q2 = "SELECT Quantity FROM showroom_item_details natural join item where Showroom_ID = $Rid and Item_ID = $Iid";
+		// $result2 = mysqli_query($con, $q2);
+		// $n2 = mysqli_num_rows($result2);
 
 		if($qu >= $quant && $quant > 0)
 		{
-			$q0 = "Update `godown_item_details` set `Quantity` = `Quantity` - $quant where Godown_ID = $Gid and Item_ID = $Iid";
+			$q0 = "Update `showroom_item_details` set `Quantity` = `Quantity` - $quant where Showroom_ID = $Sid and Item_ID = $Iid";
 			if($n1 != 0)
 			{
-				$q1 = "Update `restock_item_details` set `Quantity` = `Quantity` + $quant where Restock_ID = $Rid and Item_ID = $Iid and `Quantity` + $quant >= 0";
+				$q1 = "Update `sale_item_details` set `Quantity` = `Quantity` + $quant where Sale_ID = $Saleid and Item_ID = $Iid and `Quantity` + $quant >= 0";
 			}
 			else
 			{
-				$q1 = "INSERT INTO `restock_item_details` VALUES ($Rid, $Iid, $quant)";
+				$q1 = "INSERT INTO `sale_item_details` VALUES ($Saleid, $Iid, $quant)";
 			}
-			if($n2 != 0)
-			{
-				$q2 = "Update `showroom_item_details` set `Quantity` = `Quantity` + $quant where Showroom_ID = $Sid and Item_ID = $Iid"; 
-			}
-			else if($quant > -1)
-			{
-					$q2 = "INSERT INTO `showroom_item_details` VALUES ($Sid, $Iid, $quant)";
-			}
+			// if($n2 != 0)
+			// {
+			// 	$q2 = "Update `showroom_item_details` set `Quantity` = `Quantity` + $quant where Showroom_ID = $Sid and Item_ID = $Iid"; 
+			// }
+			// else if($quant > -1)
+			// {
+			// 		$q2 = "INSERT INTO `showroom_item_details` VALUES ($Sid, $Iid, $quant)";
+			// }
 
 
-			if(mysqli_query($con, $q0) && mysqli_query($con, $q1) && mysqli_query($con, $q2))
+			if(mysqli_query($con, $q0) && mysqli_query($con, $q1))
 			{
 				echo "Purchase Added Successfully!!";
-				header("location:editrestock.php?Rid=".$Rid."&Gid=".$Gid."&Sid=".$Sid);
+				header("location:editsale.php?Saleid=".$Saleid."&Cid=".$Cid."&Sid=".$Sid);
 			}
 			else
 			{

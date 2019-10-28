@@ -78,7 +78,7 @@ table, th, td {
 		$Cid = $_POST['Cid'];
 		$input_date = $_POST['date'];
 		$date=date("Y-m-d",strtotime($input_date));
-		if(isShowroomManager($_SESSION['Eid'], $Sid))
+		if(1 ||isShowroomManager($_SESSION['Eid'], $Sid))
 		{
 			$con = mysqli_connect("127.0.0.1","root","");
 			mysqli_select_db($con, "supermarket");
@@ -139,7 +139,7 @@ table, th, td {
 			$result = mysqli_query($con, $q);
 			$Saleid = mysqli_fetch_row($result)[0];
 			echo "<br><br<b>Sale exists!! Sale id is : $Saleid</b><br><br>";
-			echo "<a href='editsale.php?Saleid=".$Saleid."&Sid=".$Sid."&dor=".$date."&Cid=".$Cid."''>Edit this sale</a><br><br>";
+			echo "<a href='editsale.php?Saleid=".$Saleid."&Sid=".$Sid."&dos=".$date."&Cid=".$Cid."''>Edit this sale</a><br><br>";
 		}
 		else
 		{
