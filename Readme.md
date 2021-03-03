@@ -1,6 +1,6 @@
 <h1>Enterprise Management System</h1>
 
-Report: https://github.com/krahulreddy/Enterprise-Management-System/blob/master/DBMS_Supermarket_Report.pdf
+Report: https://github.com/vsushruth/Enterprise-Management-System/blob/master/DBMS_Supermarket_Report.pdf
 <br><br>
 This is an Enterprise management system for Retail chains with multiple godowns and outlets. We manage purchases from suppliers, restocking of outlets and sales to customers.
 <br><br>
